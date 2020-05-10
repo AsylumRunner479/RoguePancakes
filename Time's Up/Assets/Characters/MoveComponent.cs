@@ -19,7 +19,7 @@ public class MoveComponent : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.MovePosition(transform.position + (Direction * Speed * Time.deltaTime));
         Direction = Vector3.zero;
