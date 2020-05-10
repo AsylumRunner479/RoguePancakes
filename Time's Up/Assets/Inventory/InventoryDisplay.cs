@@ -30,8 +30,12 @@ public class InventoryDisplay : MonoBehaviour
     {
         foreach (GameObject inventorySlot in InventorySlots)
         {
-            if (inventorySlot.GetComponent<InventorySlot>().HasItem())
+            if (!inventorySlot.GetComponent<InventorySlot>().HasItem())
+            {
+                Debug.Log(_item);
+                inventorySlot.GetComponent<InventorySlot>().SetItem(_item);
                 return true;
+            }
         }
 
         return false;
