@@ -26,6 +26,8 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         ItemObject.SetActive(false);
         Canvas = _canvas;
         InventoryDisplay = _display;
+
+        ItemObject.transform.SetParent(_display.transform);
     }
 
     void Update()
@@ -42,6 +44,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (ItemObject.activeSelf)
         {
             InitialDragDelta = InitialMouseDown - ItemObject.transform.position;
+            ItemObject.transform.SetSiblingIndex(ItemObject.transform.parent.childCount);
             //Debug.Log("Start " + InventorySlotNum);
         }
     }
