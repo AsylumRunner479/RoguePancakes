@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     public float time;
-
+    public GameManager gamemanager;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class TimeManager : MonoBehaviour
         }
         else
         {
-            GameManager.isDead = false;
+            gamemanager.NextLevel();
         }
     }
 }
