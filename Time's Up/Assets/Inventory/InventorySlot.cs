@@ -8,17 +8,30 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     [Header("Slot Variable")]
     public GameObject ItemObject;
+    public Text ItemNumText;
 
     [Header("Visible Variables")]
+    [Header("Setup")]
     public InventoryDisplay InventoryDisplay;
     public Canvas Canvas;
+    [Header("Item")]
     public GameObject Item;
+    public int NumberOfItems;
+    [Header("Drag")]
+    public GameObject PickedUpItem;
+    public GameObject PickedUpItemObject;
+    public int PickedUpNum;
 
     [Header("Testing Variables")]
-    public float InventorySlotNum;
+    public int InventorySlotNum;
     public Vector3 InitialDragPosition;
     public Vector3 InitialDragDelta;
     public Vector3 InitialMouseDown;
+
+    void Start()
+    {
+        transform.SetSiblingIndex(InventorySlotNum);
+    }
 
     public void InitializeSlot(Canvas _canvas, InventoryDisplay _display)
     {
@@ -26,12 +39,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         ItemObject.SetActive(false);
         Canvas = _canvas;
         InventoryDisplay = _display;
-
-        ItemObject.transform.SetParent(_display.transform);
-    }
-
-    void Update()
-    {
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -43,30 +50,44 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (ItemObject.activeSelf)
         {
-            InitialDragDelta = InitialMouseDown - ItemObject.transform.position;
-            ItemObject.transform.SetSiblingIndex(ItemObject.transform.parent.childCount);
+            PickedUpItemObject = Instantiate(ItemObject, transform);
+            PickedUpItemObject.transform.SetParent(InventoryDisplay.transform);
+            PickedUpItemObject.transform.SetAsLastSibling();
+
+            InitialDragDelta = InitialMouseDown - PickedUpItemObject.transform.position;
+
+            PickedUpItem = Item;
+            PickedUpNum = NumberOfItems;
+
+            RemoveItem(PickedUpNum);
             //Debug.Log("Start " + InventorySlotNum);
         }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (ItemObject.activeSelf)
+        if (PickedUpItemObject != null)
         {
-            ItemObject.transform.position = ((Vector3)eventData.position - InitialDragDelta) / Canvas.scaleFactor;
+            PickedUpItemObject.transform.position = ((Vector3)eventData.position - InitialDragDelta) / Canvas.scaleFactor;
             //Debug.Log("Drag " + InventorySlotNum);
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (ItemObject.activeSelf)
+        if (PickedUpItemObject != null)
         {
-            ItemObject.transform.position = InitialDragPosition;
-            //Debug.Log("End " + InventorySlotNum);
+            Destroy(PickedUpItemObject);
 
-            if (InventoryDisplay.DropItemIntoSlot(Item))
+            int amountLeft = InventoryDisplay.DropItemIntoSlot(PickedUpItem, PickedUpNum);
+
+            if (amountLeft <= 0)
                 RemoveItem();
+            else
+                SetItem(PickedUpItem, amountLeft);
+
+            PickedUpItem = null;
+            PickedUpNum = 0;
         }
     }
 
@@ -82,26 +103,63 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public bool HasItem() { return Item != null; }
 
-    public bool AddItem(GameObject _item)
+    public int AddItem(GameObject _item, int _num)
     {
+        ItemComponent item = _item.GetComponent<ItemComponent>();
+
         if (!HasItem())
         {
-            SetItem(_item);
-            return true;
+            int amount = (int)Mathf.Min(item.NumberPerStack, NumberOfItems + _num);
+            int initialNumber = NumberOfItems;
+
+            SetItem(_item, amount);
+            return _num + initialNumber - amount;
         }
 
-        return false;
+        ItemComponent currItem = Item.GetComponent<ItemComponent>();
+
+        if (currItem.ItemId == item.ItemId)
+        {
+            int amount = (int)Mathf.Min(item.NumberPerStack, NumberOfItems + _num);
+            int initialNumber = NumberOfItems;
+
+            SetItem(_item, amount);
+            return _num + initialNumber - amount;
+        }
+
+        return _num;
     }
 
-    public void SetItem(GameObject _item)
+    public void SetItem(GameObject _item, int _num)
     {
         ItemObject.SetActive(true);
         Item = _item;
         ItemObject.GetComponent<Image>().sprite = _item.GetComponent<SpriteRenderer>().sprite;
+
+        SetNumOfItems(_num);
     }
-    public void RemoveItem()
+    public void RemoveItem() { RemoveItem(NumberOfItems); }
+    public void RemoveItem(int _num)
     {
-        ItemObject.SetActive(false);
-        Item = null;
+        SetNumOfItems(NumberOfItems - _num);
+
+        if (NumberOfItems <= 0)
+        {
+            ItemObject.SetActive(false);
+            Item = null;
+        }
+
+    }
+
+    public void SetNumOfItems(int _num)
+    {
+        NumberOfItems = _num;
+
+        if (NumberOfItems < 0)
+            NumberOfItems = 0;
+
+        ItemNumText.text = NumberOfItems + "";
+        ItemNumText.transform.parent.gameObject.SetActive(NumberOfItems > 1);
+
     }
 }

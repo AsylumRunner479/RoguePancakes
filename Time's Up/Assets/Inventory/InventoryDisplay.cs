@@ -21,6 +21,7 @@ public class InventoryDisplay : MonoBehaviour
             inventorySlot.GetComponent<InventorySlot>().InitializeSlot(Canvas, this);
 
             InventorySlots.Add(inventorySlot);
+            
         }
     }
 
@@ -29,24 +30,22 @@ public class InventoryDisplay : MonoBehaviour
     {
     }
 
-    public bool AddItem(GameObject _item)
+    public int AddItem(GameObject _item, int _num)
     {
         foreach (GameObject inventorySlot in InventorySlots)
         {
-            if (inventorySlot.GetComponent<InventorySlot>().AddItem(_item))
-            {
-                Debug.Log(_item);
-                
-                return true;
-            }
+            _num = inventorySlot.GetComponent<InventorySlot>().AddItem(_item, _num);
+
+            if (_num <= 0)
+                break;
         }
 
-        return false;
+        return _num;
     }
 
-    public bool AddItemTo(GameObject _item, InventorySlot _target)
+    public int AddItemTo(GameObject _item, int _num, InventorySlot _target)
     {
-        return _target.AddItem(_item);
+        return _target.AddItem(_item, _num);
     }
 
     public void PointerEnterSlot(InventorySlot _slot) { LatestEntered = _slot; Debug.Log("Enter: " + _slot.InventorySlotNum); }
@@ -55,14 +54,14 @@ public class InventoryDisplay : MonoBehaviour
         if (LatestEntered == _slot)
             LatestEntered = null;
     }
-    public bool DropItemIntoSlot(GameObject _item)
+    public int DropItemIntoSlot(GameObject _item, int _num)
     {
         if (LatestEntered == null)
-            return false;
+            return _num;
 
         Debug.Log("Adding to " + LatestEntered.InventorySlotNum);
 
-        bool result = LatestEntered.AddItem(_item);
+        int result = LatestEntered.AddItem(_item, _num);
 
         LatestEntered = null;
 

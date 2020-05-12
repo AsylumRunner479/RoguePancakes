@@ -21,6 +21,6 @@ public class InventoryTest : MonoBehaviour
 
     public void AddItem()
     {
-        Inventory.AddItem(TestItem);
+        Inventory.AddItem(TestItem, 1);
     }
 }

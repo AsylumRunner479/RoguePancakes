@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ItemComponent : MonoBehaviour
 {
+    [Header("Item Variables")]
+    public string ItemId;
+    public float NumberPerStack = 1;
+
     // Start is called before the first frame update
     void Start()
     {
