@@ -19,9 +19,13 @@ public class TimeManager : MonoBehaviour
         {
             time -= Time.deltaTime;
         }
-        else
+        else if (ElevatorManager.PlayerSafe == false)
         {
             GameManager.isDead = true;
+        }
+        else
+        {
+            GameManager.isDead = false;
         }
     }
 }
