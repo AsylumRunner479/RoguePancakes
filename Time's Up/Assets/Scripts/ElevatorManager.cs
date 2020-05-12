@@ -6,6 +6,7 @@ public class ElevatorManager : MonoBehaviour
 {
     public static bool PlayerSafe;
     public Collider2D col;
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class ElevatorManager : MonoBehaviour
         if (collision.tag == "Player")
         {
             PlayerSafe = true;
+            anim.SetTrigger("Open");
         } 
     }
     public void OnColliderExit2D(Collider2D collision)
@@ -23,6 +25,7 @@ public class ElevatorManager : MonoBehaviour
         if (collision.tag == "Player")
         {
             PlayerSafe = false;
+            anim.SetTrigger("Open");
         }
     }
     // Update is called once per frame
