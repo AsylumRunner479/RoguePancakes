@@ -6,6 +6,8 @@ public class InventoryTest : MonoBehaviour
 {
     public InventoryDisplay Inventory;
     public GameObject TestItem;
+    public List<string> CheckIds;
+    public List<int> CheckAmounts;
 
     // Start is called before the first frame update
     void Start()
@@ -22,5 +24,10 @@ public class InventoryTest : MonoBehaviour
     public void AddItem()
     {
         Inventory.AddItem(TestItem, 1);
+    }
+
+    public void CheckItem()
+    {
+        Debug.Log(Inventory.HasItem(CheckIds, CheckAmounts));
     }
 }

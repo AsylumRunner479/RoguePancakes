@@ -59,12 +59,34 @@ public class InventoryDisplay : MonoBehaviour
         if (LatestEntered == null)
             return _num;
 
-        Debug.Log("Adding to " + LatestEntered.InventorySlotNum);
-
         int result = LatestEntered.AddItem(_item, _num);
 
         LatestEntered = null;
 
         return result;
+    }
+
+    public bool HasItem(string _itemId, int _amount)
+    {
+        foreach(GameObject inventorySlot in InventorySlots)
+        {
+            InventorySlot slot = inventorySlot.GetComponent<InventorySlot>();
+
+            if (slot.HasItem(_itemId))
+                _amount -= slot.NumberOfItems;
+
+            if (_amount <= 0) return true;
+        }
+
+        return false;
+    }
+
+    public bool HasItem(List<string> _itemIds, List<int> _amounts)
+    {
+        for (int i = 0; i < _itemIds.Count; i++)
+            if (!HasItem(_itemIds[i], _amounts[i]))
+                return false;
+
+        return true;
     }
 }

@@ -101,13 +101,20 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         InventoryDisplay.PointerExitSlot(this);
     }
 
-    public bool HasItem() { return Item != null; }
+    public bool IsThereItem() { return Item != null; }
+    public bool HasItem(string _itemId)
+    {
+        if (!IsThereItem())
+            return false;
+
+        return Item.GetComponent<ItemComponent>().ItemId == _itemId;
+    }
 
     public int AddItem(GameObject _item, int _num)
     {
         ItemComponent item = _item.GetComponent<ItemComponent>();
 
-        if (!HasItem())
+        if (!IsThereItem())
         {
             int amount = (int)Mathf.Min(item.NumberPerStack, NumberOfItems + _num);
             int initialNumber = NumberOfItems;
