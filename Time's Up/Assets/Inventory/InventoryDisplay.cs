@@ -7,27 +7,38 @@ public class InventoryDisplay : MonoBehaviour
     [Header("Inventory Prefabs")]
     public Canvas Canvas;
     public GameObject InventorySlotSection;
+    public GameObject Toolkit;
 
     [Header("Test Variables")]
-    public List<GameObject> InventorySlots;
+    public GameObject[] InventorySlots;
+    public GameObject[] ToolkitSlots;
     public InventorySlot LatestEntered;
 
     // Start is called before the first frame update
     void Start()
     {
+        InventorySlots = new GameObject[InventorySlotSection.transform.childCount];
         for(int i = 0; i < InventorySlotSection.transform.childCount; i++)
         {
             GameObject inventorySlot = InventorySlotSection.transform.GetChild(i).gameObject;
-            inventorySlot.GetComponent<InventorySlot>().InitializeSlot(Canvas, this);
+            InventorySlot slotComponent = inventorySlot.GetComponent<InventorySlot>();
 
-            InventorySlots.Add(inventorySlot);
+            slotComponent.InitializeSlot(Canvas, this);
+
+            InventorySlots[slotComponent.InventorySlotNum] = inventorySlot;
             
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        ToolkitSlots = new GameObject[Toolkit.transform.childCount];
+        for(int i = 0; i < Toolkit.transform.childCount; i++)
+        {
+            GameObject toolkitSlot = Toolkit.transform.GetChild(i).gameObject;
+            InventorySlot slotComponent = toolkitSlot.GetComponent<InventorySlot>();
+
+            slotComponent.InitializeSlot(Canvas, this);
+
+            ToolkitSlots[slotComponent.InventorySlotNum] = toolkitSlot;
+        }
     }
 
     public int AddItem(GameObject _item, int _num)
