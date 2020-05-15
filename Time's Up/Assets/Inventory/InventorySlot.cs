@@ -51,7 +51,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (ItemObject.activeSelf)
         {
             PickedUpItemObject = Instantiate(ItemObject, transform);
-            PickedUpItemObject.transform.SetParent(InventoryDisplay.transform);
+            PickedUpItemObject.transform.SetParent(Canvas.transform);
             PickedUpItemObject.transform.SetAsLastSibling();
 
             InitialDragDelta = InitialMouseDown - PickedUpItemObject.transform.position;

@@ -59,7 +59,7 @@ public class InventoryDisplay : MonoBehaviour
         return _target.AddItem(_item, _num);
     }
 
-    public void PointerEnterSlot(InventorySlot _slot) { LatestEntered = _slot; Debug.Log("Enter: " + _slot.InventorySlotNum); }
+    public void PointerEnterSlot(InventorySlot _slot) { LatestEntered = _slot; }
     public void PointerExitSlot(InventorySlot _slot)
     {
         if (LatestEntered == _slot)
