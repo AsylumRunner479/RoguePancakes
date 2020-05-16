@@ -17,28 +17,25 @@ public class InventoryDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InventorySlots = new GameObject[InventorySlotSection.transform.childCount];
-        for(int i = 0; i < InventorySlotSection.transform.childCount; i++)
+        InventorySlots = InitializeSlots(InventorySlotSection);
+        ToolkitSlots = InitializeSlots(Toolkit);
+    }
+
+    GameObject[] InitializeSlots(GameObject _parent)
+    {
+        GameObject[] slots = new GameObject[_parent.transform.childCount];
+
+        for (int i = 0; i < _parent.transform.childCount; i++)
         {
-            GameObject inventorySlot = InventorySlotSection.transform.GetChild(i).gameObject;
-            InventorySlot slotComponent = inventorySlot.GetComponent<InventorySlot>();
+            GameObject slot = _parent.transform.GetChild(i).gameObject;
+            InventorySlot slotComponent = slot.GetComponent<InventorySlot>();
 
             slotComponent.InitializeSlot(Canvas, this);
 
-            InventorySlots[slotComponent.InventorySlotNum] = inventorySlot;
-            
+            slots[slotComponent.InventorySlotNum] = slot;
         }
 
-        ToolkitSlots = new GameObject[Toolkit.transform.childCount];
-        for(int i = 0; i < Toolkit.transform.childCount; i++)
-        {
-            GameObject toolkitSlot = Toolkit.transform.GetChild(i).gameObject;
-            InventorySlot slotComponent = toolkitSlot.GetComponent<InventorySlot>();
-
-            slotComponent.InitializeSlot(Canvas, this);
-
-            ToolkitSlots[slotComponent.InventorySlotNum] = toolkitSlot;
-        }
+        return slots;
     }
 
     public int AddItem(GameObject _item, int _num)

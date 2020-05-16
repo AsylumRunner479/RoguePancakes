@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ToolkitDisplay : MonoBehaviour
 {
@@ -42,14 +43,36 @@ public class ToolkitDisplay : MonoBehaviour
         SelectSlot(0);
     }
 
-    void SelectSlot(int _num)
+    void SelectSlot(int _index)
     {
         if (SelectedSlotIndex != -1)
-            ToolkitSlots[SelectedSlotIndex].GetComponent<Image>().sprite = BasicInventorySprite;
+            DeselectSlot(SelectedSlotIndex);
 
-        SelectedSlotIndex = _num;
+        SelectedSlotIndex = _index;
 
         ToolkitSlots[SelectedSlotIndex].GetComponent<Image>().sprite = SelectedSprite;
+
+        ItemComponent item = GetItemOfSlot(SelectedSlotIndex);
+        if (item != null)
+            item.OnSelect();
+    }
+
+    void DeselectSlot(int _index)
+    {
+        ToolkitSlots[_index].GetComponent<Image>().sprite = BasicInventorySprite;
+
+        ItemComponent item = GetItemOfSlot(_index);
+        if (item != null)
+            item.OnDeselect();
+    }
+
+    ItemComponent GetItemOfSlot(int _index)
+    {
+        InventorySlot slot = ToolkitSlots[_index].GetComponent<InventorySlot>();
+        if(!slot.IsThereItem())
+            return null;
+
+        return slot.Item.GetComponent<ItemComponent>();
     }
 
     void SelectNextSlot(int _amount)
@@ -74,4 +97,10 @@ public class ToolkitDisplay : MonoBehaviour
             SelectNextSlot((int) -Mathf.Sign(rawScrollInput));
         }
     }
+
+    public ItemComponent GetSelectedItem()
+    {
+        return GetItemOfSlot(SelectedSlotIndex);
+    }
+
 }

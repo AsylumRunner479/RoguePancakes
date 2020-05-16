@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ItemComponent : MonoBehaviour
 {
@@ -20,5 +21,7 @@ public class ItemComponent : MonoBehaviour
         
     }
 
-    public virtual void OnUse() { Debug.Log("Use"); }
+    public virtual void OnSelect() { Debug.Log("Select"); }
+    public virtual void OnUse(Vector3 _mousePosition) { Debug.Log("Use"); }
+    public virtual void OnDeselect() { Debug.Log("Deselect"); }
 }
