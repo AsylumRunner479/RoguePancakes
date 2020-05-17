@@ -121,6 +121,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &110089456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 721090261324435421, guid: b9bee8cd0f2f19a49936e87b9e9cb4c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 721090262700253782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &110089464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110089456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee844919d44b764698d9709b8f292a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpriteRenderer: {fileID: 0}
+  Animator: {fileID: 0}
+  PlayerController: {fileID: 0}
 --- !u!1 &221964044
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,6 +931,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Speed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 721090261324435419, guid: b9bee8cd0f2f19a49936e87b9e9cb4c1,
+        type: 3}
+      propertyPath: Health
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 721090261324435421, guid: b9bee8cd0f2f19a49936e87b9e9cb4c1,
         type: 3}

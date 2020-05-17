@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Variables")]
+    public int Health = 7;
+
+    [Header("Visible Variables")]
+    public Vector3 Direction;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +24,8 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 direction = Vector3.zero;
+        Direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        GetComponent<MoveComponent>().SetDirection(direction);
+        GetComponent<MoveComponent>().SetDirection(Direction);
     }
 }
