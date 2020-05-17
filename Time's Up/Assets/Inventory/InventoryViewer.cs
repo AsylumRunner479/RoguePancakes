@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//LITERALLY JUST ALLOWS YOU TO CLICK TAB TO SEE INVENTORY
 public class InventoryViewer : MonoBehaviour
 {
     [Header("Inventory Variables")]

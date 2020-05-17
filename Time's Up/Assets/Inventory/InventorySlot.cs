@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
@@ -21,6 +22,9 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public GameObject PickedUpItem;
     public GameObject PickedUpItemObject;
     public int PickedUpNum;
+    [Header("Observable Variables")]
+    public List<Action<ItemComponent>> OnItemAdded;
+    public List<Action<ItemComponent>> OnItemRemoved;
 
     [Header("Testing Variables")]
     public int InventorySlotNum;
@@ -31,8 +35,12 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     void Start()
     {
         transform.SetSiblingIndex(InventorySlotNum);
+
+        OnItemAdded = new List<Action<ItemComponent>>();
+        OnItemRemoved = new List<Action<ItemComponent>>();
     }
 
+    //Initializes the slot (Is called by inventory display)
     public void InitializeSlot(Canvas _canvas, InventoryDisplay _display)
     {
         InitialDragPosition = ItemObject.transform.position;
@@ -41,6 +49,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         InventoryDisplay = _display;
     }
 
+    //Main bulk of drag and drop functionality
     public void OnPointerDown(PointerEventData eventData)
     {
         InitialMouseDown = eventData.position;
@@ -60,7 +69,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             PickedUpNum = NumberOfItems;
 
             RemoveItem(PickedUpNum);
-            //Debug.Log("Start " + InventorySlotNum);
         }
     }
 
@@ -69,7 +77,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (PickedUpItemObject != null)
         {
             PickedUpItemObject.transform.position = ((Vector3)eventData.position - InitialDragDelta) / Canvas.scaleFactor;
-            //Debug.Log("Drag " + InventorySlotNum);
         }
     }
 
@@ -81,9 +88,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
             int amountLeft = InventoryDisplay.DropItemIntoSlot(PickedUpItem, PickedUpNum);
 
-            if (amountLeft <= 0)
-                RemoveItem();
-            else
+            if (amountLeft > 0)
                 SetItem(PickedUpItem, amountLeft);
 
             PickedUpItem = null;
@@ -101,6 +106,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         InventoryDisplay.PointerExitSlot(this);
     }
 
+    //Inventory slot functionality
     public bool IsThereItem() { return Item != null; }
     public bool HasItem(string _itemId)
     {
@@ -136,6 +142,11 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         return _num;
     }
+    public void RemoveItem() { RemoveItem(NumberOfItems); }
+    public void RemoveItem(int _num)
+    {
+        SetNumOfItems(NumberOfItems - _num);
+    }
 
     public void SetItem(GameObject _item, int _num)
     {
@@ -145,28 +156,43 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         SetNumOfItems(_num);
     }
-    public void RemoveItem() { RemoveItem(NumberOfItems); }
-    public void RemoveItem(int _num)
+    public void SetNumOfItems(int _num)
     {
-        SetNumOfItems(NumberOfItems - _num);
+        if (Item == null)
+            throw new Exception("Item has not been set");
+
+        if (_num > 0 && NumberOfItems <= 0)
+            ItemAdded(Item.GetComponent<ItemComponent>());
+
+        NumberOfItems = _num;
 
         if (NumberOfItems <= 0)
         {
+            ItemRemoved(Item.GetComponent<ItemComponent>());
+            NumberOfItems = 0;
             ItemObject.SetActive(false);
             Item = null;
         }
-
-    }
-
-    public void SetNumOfItems(int _num)
-    {
-        NumberOfItems = _num;
-
-        if (NumberOfItems < 0)
-            NumberOfItems = 0;
 
         ItemNumText.text = NumberOfItems + "";
         ItemNumText.transform.parent.gameObject.SetActive(NumberOfItems > 1);
 
     }
+
+    //Actions from any observer
+    void ItemRemoved(ItemComponent _item)
+    {
+        for (int i = 0; i < OnItemRemoved.Count; i++)
+            OnItemRemoved[i](_item);
+    }
+    void ItemAdded(ItemComponent _item)
+    {
+        for (int i = 0; i < OnItemAdded.Count; i++)
+            OnItemAdded[i](_item);
+    }
+
+    public void AddItemAddedAction(Action<ItemComponent> _itemAdded) { OnItemAdded.Add(_itemAdded); }
+    public void RemoveItemAddedAction(Action<ItemComponent> _itemAdded) { OnItemAdded.Remove(_itemAdded); }
+    public void AddItemRemovedAction(Action<ItemComponent> _itemRemoved) { OnItemRemoved.Add(_itemRemoved); }
+    public void RemoveItemRemovedAction(Action<ItemComponent> _itemRemoved) { OnItemRemoved.Remove(_itemRemoved); }
 }

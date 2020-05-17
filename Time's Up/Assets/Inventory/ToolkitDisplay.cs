@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+//Toolkit refers to the characters main inventory slot
 public class ToolkitDisplay : MonoBehaviour
 {
     [Header("Toolkit Variable")]
@@ -14,6 +15,10 @@ public class ToolkitDisplay : MonoBehaviour
     public GameObject[] ToolkitSlots;
     public int SelectedSlotIndex;
     public Sprite BasicInventorySprite;
+
+    //Observer Variables
+    private Action<ItemComponent> ItemAdded;
+    private Action<ItemComponent> ItemRemoved;
 
     private KeyCode[] NumberKeyCodes = {
          KeyCode.Alpha1,
@@ -34,12 +39,14 @@ public class ToolkitDisplay : MonoBehaviour
         for(int i = 0; i < ToolkitSlots.Length; i++)
         {
             GameObject toolkitSlot = ToolkitContainer.transform.GetChild(i).gameObject;
-            ToolkitSlots[i] = toolkitSlot;
+            InventorySlot slotComponent = toolkitSlot.GetComponent<InventorySlot>();
+            ToolkitSlots[slotComponent.InventorySlotNum] = toolkitSlot;
 
             if (BasicInventorySprite == null)
                 BasicInventorySprite = toolkitSlot.GetComponent<Image>().sprite;
         }
 
+        //Auto Selects the First Slot
         SelectSlot(0);
     }
 
@@ -52,6 +59,12 @@ public class ToolkitDisplay : MonoBehaviour
 
         ToolkitSlots[SelectedSlotIndex].GetComponent<Image>().sprite = SelectedSprite;
 
+        ItemAdded = (_item) => _item.OnSelect();
+        ItemRemoved = (_item) => _item.OnDeselect();
+        InventorySlot slotComponent = ToolkitSlots[SelectedSlotIndex].GetComponent<InventorySlot>();
+        slotComponent.AddItemAddedAction(ItemAdded);
+        slotComponent.AddItemRemovedAction(ItemRemoved);
+
         ItemComponent item = GetItemOfSlot(SelectedSlotIndex);
         if (item != null)
             item.OnSelect();
@@ -60,6 +73,10 @@ public class ToolkitDisplay : MonoBehaviour
     void DeselectSlot(int _index)
     {
         ToolkitSlots[_index].GetComponent<Image>().sprite = BasicInventorySprite;
+
+        InventorySlot slotComponent = ToolkitSlots[SelectedSlotIndex].GetComponent<InventorySlot>();
+        slotComponent.RemoveItemAddedAction(ItemAdded);
+        slotComponent.RemoveItemRemovedAction(ItemRemoved);
 
         ItemComponent item = GetItemOfSlot(_index);
         if (item != null)
@@ -87,10 +104,12 @@ public class ToolkitDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Allows you to click through your numbers
         for (int i = 0; i < NumberKeyCodes.Length; i++)
-            if (Input.GetKeyDown(NumberKeyCodes[i]))
+            if (Input.GetKeyDown(NumberKeyCodes[i]) && i < ToolkitSlots.Length)
                 SelectSlot(i);
 
+        //Allows you to scroll through toolkit
         float rawScrollInput = Input.GetAxis("Mouse ScrollWheel");
         if (rawScrollInput != 0)
         {

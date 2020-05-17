@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Main Inventory Controller
 public class InventoryDisplay : MonoBehaviour
 {
     [Header("Inventory Prefabs")]
@@ -9,7 +10,7 @@ public class InventoryDisplay : MonoBehaviour
     public GameObject InventorySlotSection;
     public GameObject Toolkit;
 
-    [Header("Test Variables")]
+    [Header("Visible Variables")]
     public GameObject[] InventorySlots;
     public GameObject[] ToolkitSlots;
     public InventorySlot LatestEntered;
@@ -21,6 +22,7 @@ public class InventoryDisplay : MonoBehaviour
         ToolkitSlots = InitializeSlots(Toolkit);
     }
 
+    //Initializes inventory slots
     GameObject[] InitializeSlots(GameObject _parent)
     {
         GameObject[] slots = new GameObject[_parent.transform.childCount];
@@ -36,6 +38,25 @@ public class InventoryDisplay : MonoBehaviour
         }
 
         return slots;
+    }
+
+    //Enables drag and drop functionality (most functionality can be found in InventorySlot)
+    public void PointerEnterSlot(InventorySlot _slot) { LatestEntered = _slot; }
+    public void PointerExitSlot(InventorySlot _slot)
+    {
+        if (LatestEntered == _slot)
+            LatestEntered = null;
+    }
+    public int DropItemIntoSlot(GameObject _item, int _num)
+    {
+        if (LatestEntered == null)
+            return _num;
+
+        int result = LatestEntered.AddItem(_item, _num);
+
+        LatestEntered = null;
+
+        return result;
     }
 
     public int AddItem(GameObject _item, int _num)
@@ -54,24 +75,6 @@ public class InventoryDisplay : MonoBehaviour
     public int AddItemTo(GameObject _item, int _num, InventorySlot _target)
     {
         return _target.AddItem(_item, _num);
-    }
-
-    public void PointerEnterSlot(InventorySlot _slot) { LatestEntered = _slot; }
-    public void PointerExitSlot(InventorySlot _slot)
-    {
-        if (LatestEntered == _slot)
-            LatestEntered = null;
-    }
-    public int DropItemIntoSlot(GameObject _item, int _num)
-    {
-        if (LatestEntered == null)
-            return _num;
-
-        int result = LatestEntered.AddItem(_item, _num);
-
-        LatestEntered = null;
-
-        return result;
     }
 
     public bool HasItem(string _itemId, int _amount)
