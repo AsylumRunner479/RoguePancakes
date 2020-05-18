@@ -71,7 +71,6 @@ public class InventoryDisplay : MonoBehaviour
 
         return _num;
     }
-
     public int AddItemTo(GameObject _item, int _num, InventorySlot _target)
     {
         return _target.AddItem(_item, _num);
@@ -79,7 +78,7 @@ public class InventoryDisplay : MonoBehaviour
 
     public bool HasItem(string _itemId, int _amount)
     {
-        foreach(GameObject inventorySlot in InventorySlots)
+        foreach(GameObject inventorySlot in GetMainInventorySlots())
         {
             InventorySlot slot = inventorySlot.GetComponent<InventorySlot>();
 
@@ -91,13 +90,42 @@ public class InventoryDisplay : MonoBehaviour
 
         return false;
     }
-
-    public bool HasItem(List<string> _itemIds, List<int> _amounts)
+    public bool HasItem(List<GameObject> _items, List<int> _amounts)
     {
-        for (int i = 0; i < _itemIds.Count; i++)
-            if (!HasItem(_itemIds[i], _amounts[i]))
+        for (int i = 0; i < _items.Count; i++)
+            if (!HasItem(_items[i].GetComponent<ItemComponent>().ItemId, _amounts[i]))
                 return false;
 
         return true;
+    }
+
+    public void RemoveItem(string _itemId, int _amount)
+    {
+        foreach (GameObject inventorySlot in GetMainInventorySlots())
+        {
+            InventorySlot slot = inventorySlot.GetComponent<InventorySlot>();
+
+            if (slot.HasItem(_itemId))
+            {
+                _amount = slot.RemoveItem(_amount);
+            }
+
+            if (_amount <= 0)
+                return;
+        }
+    }
+    public void RemoveItem(List<GameObject> _items, List<int> _amounts)
+    {
+        for (int i = 0; i < _items.Count; i++)
+            RemoveItem(_items[i].GetComponent<ItemComponent>().ItemId, _amounts[i]);
+    }
+
+    List<GameObject> GetMainInventorySlots()
+    {
+        List<GameObject> mainSlots = new List<GameObject>();
+        mainSlots.AddRange(InventorySlots);
+        mainSlots.AddRange(ToolkitSlots);
+
+        return mainSlots;
     }
 }

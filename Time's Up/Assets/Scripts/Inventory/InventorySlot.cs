@@ -116,22 +116,13 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         return Item.GetComponent<ItemComponent>().ItemId == _itemId;
     }
 
+    //Returns the number of leftover items
     public int AddItem(GameObject _item, int _num)
     {
         ItemComponent item = _item.GetComponent<ItemComponent>();
+        ItemComponent currItem = IsThereItem() ? Item.GetComponent<ItemComponent>() : null;
 
-        if (!IsThereItem())
-        {
-            int amount = (int)Mathf.Min(item.NumberPerStack, NumberOfItems + _num);
-            int initialNumber = NumberOfItems;
-
-            SetItem(_item, amount);
-            return _num + initialNumber - amount;
-        }
-
-        ItemComponent currItem = Item.GetComponent<ItemComponent>();
-
-        if (currItem.ItemId == item.ItemId)
+        if (currItem  == null || currItem.ItemId == item.ItemId)
         {
             int amount = (int)Mathf.Min(item.NumberPerStack, NumberOfItems + _num);
             int initialNumber = NumberOfItems;
@@ -142,10 +133,15 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         return _num;
     }
-    public void RemoveItem() { RemoveItem(NumberOfItems); }
-    public void RemoveItem(int _num)
+    public int RemoveItem() { RemoveItem(NumberOfItems); return 0; }
+    //Returns the number of items you still need to remove
+    public int RemoveItem(int _num)
     {
+        int prevNum = NumberOfItems;
+
         SetNumOfItems(NumberOfItems - _num);
+
+        return _num - prevNum;
     }
 
     public void SetItem(GameObject _item, int _num)

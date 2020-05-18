@@ -22,10 +22,13 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         Vector3 direction = PlayerController.Direction;
 
-        Animator.SetBool("down", direction.y < 0);
-        Animator.SetBool("up", direction.y > 0);
-        Animator.SetBool("side", direction.x != 0);
+        if (direction != Vector3.zero)
+        {
+            Animator.SetBool("down", direction.y < 0);
+            Animator.SetBool("up", direction.y > 0);
+            Animator.SetBool("side", direction.x != 0);
 
-        SpriteRenderer.flipX = direction.x < 0;
+            SpriteRenderer.flipX = direction.x < 0;
+        }
     }
 }
