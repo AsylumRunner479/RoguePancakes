@@ -14,6 +14,7 @@ public class DangerZone : MonoBehaviour
     }
     public void OnColliderEnter(Collider collision)
     {
+        Debug.Log("Collides");
         if (collision.tag == "Player")
         {
             player = collision.GetComponent<PlayerController>();

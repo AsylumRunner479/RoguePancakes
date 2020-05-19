@@ -7,20 +7,20 @@ public class PlayerAnimationManager : MonoBehaviour
     [Header("Visible Variables")]
     public SpriteRenderer SpriteRenderer;
     public Animator Animator;
-    public PlayerController PlayerController;
+    public MoveComponent MoveComponent;
 
     // Start is called before the first frame update
     void Start()
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();
         Animator = GetComponent<Animator>();
-        PlayerController = GetComponent<PlayerController>();
+        MoveComponent = GetComponent<MoveComponent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = PlayerController.Direction;
+        Vector3 direction = MoveComponent.Direction;
 
         if (direction != Vector3.zero)
         {
