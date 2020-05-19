@@ -52,4 +52,13 @@ public class PlayerController : MonoBehaviour
 
         GetComponent<MoveComponent>().SetDirection(Direction);
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Item")
+        {
+            if (InventoryDisplay.Instance.AddItem(collision.gameObject, 1) <= 0)
+                collision.gameObject.SetActive(false);
+        }
+    }
 }

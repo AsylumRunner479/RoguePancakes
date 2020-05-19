@@ -5,6 +5,15 @@ using UnityEngine;
 //Main Inventory Controller
 public class InventoryDisplay : MonoBehaviour
 {
+    #region Singleton
+
+    public static InventoryDisplay Instance = null;
+    private void Awake()
+    {
+        Instance = this;
+    }
+    #endregion
+
     [Header("Inventory Prefabs")]
     public Canvas Canvas;
     public GameObject InventorySlotSection;
