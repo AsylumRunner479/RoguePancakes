@@ -21,7 +21,10 @@ public class PlayerController : MonoBehaviour
     {
         Move();
     }
-
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+    }
     private void Move()
     {
         Direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
