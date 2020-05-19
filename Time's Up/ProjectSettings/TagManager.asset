@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item
+  - Crafting
   layers:
   - Default
   - TransparentFX
