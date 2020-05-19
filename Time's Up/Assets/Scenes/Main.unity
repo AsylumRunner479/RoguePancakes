@@ -498,21 +498,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robotSpawnCount: 0
-  robot: {fileID: 0}
+  robot: {fileID: 4449711638444326834, guid: 20c161d687aef0c4c8b9dd465f7578dd, type: 3}
   cyborgSpawnCount: 0
-  cyborg: {fileID: 0}
+  cyborg: {fileID: 4975392261677062857, guid: 3f965442aac0d704ba0b178d0d0e6353, type: 3}
   batterySpawnCount: 0
-  battery: {fileID: 0}
+  battery: {fileID: 7592234916935042387, guid: 1b8eb5a64081fc04b9bd4e10a3562f73, type: 3}
   LabBenchSpawnCount: 0
-  LabBench: {fileID: 0}
+  LabBench: {fileID: 3749583781759465619, guid: e423260463cbef946a35573b2349f9d1,
+    type: 3}
   OfficeBenchSpawnCount: 0
-  OfficeBench: {fileID: 0}
+  OfficeBench: {fileID: 786140331207308737, guid: e5803da4777332946afd2ae7560e51ee,
+    type: 3}
   SteelSpawnCount: 0
-  Steel: {fileID: 0}
+  Steel: {fileID: 5450957091950991813, guid: d6e11de4e0452914f843174721db98d7, type: 3}
   woodSpawnCount: 0
-  wood: {fileID: 0}
+  wood: {fileID: 3013488634858970708, guid: c050df353896f4444a86ea80529e699e, type: 3}
   WorkBenchSpawnCount: 0
-  WorkBench: {fileID: 0}
+  WorkBench: {fileID: 6005520946211207717, guid: 485c2c9217fd94049a956fc44041fc99,
+    type: 3}
   spawnPoint: {fileID: 2105045886}
 --- !u!4 &1188921816
 Transform:

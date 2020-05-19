@@ -21,6 +21,7 @@ public class SpawnManager : MonoBehaviour
     public int WorkBenchSpawnCount;
     public GameObject WorkBench;
     public Transform spawnPoint;
+    public int bench;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,29 @@ public class SpawnManager : MonoBehaviour
     }
     public void anotherLevel()
     {
-        
+        batterySpawnCount = 4;
+        cyborgSpawnCount = Random.Range(0, 5);
+        robotSpawnCount = Random.Range(0, 10);
+        woodSpawnCount = Random.Range(0, 10);
+        SteelSpawnCount = Random.Range(0, 10);
+        bench = Random.Range(0, 3);
+        if (bench == 0)
+        {
+            LabBenchSpawnCount = 1;
+        }
+        else if (bench == 1)
+        {
+            WorkBenchSpawnCount = 1;
+        }
+        else if (bench == 2)
+        {
+            OfficeBenchSpawnCount = 1;
+        }
+        else
+        {
+
+        }
+
     }
     // Update is called once per frame
     void Update()
