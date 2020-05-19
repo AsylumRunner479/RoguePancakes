@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Singleton
+
+    public static PlayerController Instance = null;
+    private void Awake()
+    {
+        Instance = this;
+    }
+    #endregion
+
     [Header("Player Variables")]
     public int Health = 7;
 
