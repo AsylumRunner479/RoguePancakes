@@ -15,10 +15,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Variables")]
     public int Health = 7;
-
+    
     [Header("Visible Variables")]
     public Vector3 Direction;
 
+    public GameObject[] healthBars;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        for (int i = 0; i < healthBars.Length; i++)
+        {
+            if (Health <= i)
+            {
+                healthBars[i].SetActive(false);
+            }
+            else
+            {
+                healthBars[i].SetActive(true);
+            }
+        }
     }
     public void TakeDamage(int damage)
     {

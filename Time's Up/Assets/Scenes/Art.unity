@@ -2182,6 +2182,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 329b327181ce9f042b0a7ea5fcd43a55, type: 3}
+--- !u!1001 &6767353929936805680
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.1277204
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567408131623226924, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179094232396088897, guid: c099968ecce239642b590ed18c40bcec,
+        type: 3}
+      propertyPath: m_Name
+      value: Life Bar_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c099968ecce239642b590ed18c40bcec, type: 3}
 --- !u!1001 &7257185850789868832
 PrefabInstance:
   m_ObjectHideFlags: 0
