@@ -258,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399164521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.84304047, y: -7.081708, z: -788.21533}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -467,6 +467,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1188921814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1188921816}
+  - component: {fileID: 1188921815}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1188921815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188921814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4feacc2fe60b60f48b83a0dcd3c8e25c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotSpawnCount: 0
+  robot: {fileID: 4449711638444326834, guid: 20c161d687aef0c4c8b9dd465f7578dd, type: 3}
+  cyborgSpawnCount: 0
+  cyborg: {fileID: 4975392261677062857, guid: 3f965442aac0d704ba0b178d0d0e6353, type: 3}
+  batterySpawnCount: 0
+  battery: {fileID: 7592234916935042387, guid: 1b8eb5a64081fc04b9bd4e10a3562f73, type: 3}
+  LabBenchSpawnCount: 0
+  LabBench: {fileID: 3749583781759465619, guid: e423260463cbef946a35573b2349f9d1,
+    type: 3}
+  OfficeBenchSpawnCount: 0
+  OfficeBench: {fileID: 786140331207308737, guid: e5803da4777332946afd2ae7560e51ee,
+    type: 3}
+  SteelSpawnCount: 0
+  Steel: {fileID: 5450957091950991813, guid: d6e11de4e0452914f843174721db98d7, type: 3}
+  woodSpawnCount: 0
+  wood: {fileID: 3013488634858970708, guid: c050df353896f4444a86ea80529e699e, type: 3}
+  WorkBenchSpawnCount: 0
+  WorkBench: {fileID: 6005520946211207717, guid: 485c2c9217fd94049a956fc44041fc99,
+    type: 3}
+  spawnPoint: {fileID: 2105045886}
+--- !u!4 &1188921816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188921814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1445161909
 MonoBehaviour:
@@ -8965,3 +9028,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2756f508d2e7d9d499fb7d7760a72d26, type: 3}
+--- !u!1 &2105045885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2105045886}
+  m_Layer: 0
+  m_Name: SpawnManager (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2105045886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105045885}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

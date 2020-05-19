@@ -20,54 +20,93 @@ public class SpawnManager : MonoBehaviour
     public GameObject wood;
     public int WorkBenchSpawnCount;
     public GameObject WorkBench;
+    public Transform spawnPoint;
+    public int bench;
     // Start is called before the first frame update
     void Start()
     {
+        anotherLevel();
+    }
+    public void alterSpawn()
+    {
+        spawnPoint.position = this.transform.position + new Vector3(Random.Range(0, 17), Random.Range(0, 17), 0);
+    }
+    public void anotherLevel()
+    {
+        batterySpawnCount = 4;
+        cyborgSpawnCount = Random.Range(0, 5);
+        robotSpawnCount = Random.Range(0, 10);
+        woodSpawnCount = Random.Range(0, 10);
+        SteelSpawnCount = Random.Range(0, 10);
+        bench = Random.Range(0, 3);
+        if (bench == 0)
+        {
+            LabBenchSpawnCount = 1;
+        }
+        else if (bench == 1)
+        {
+            WorkBenchSpawnCount = 1;
+        }
+        else if (bench == 2)
+        {
+            OfficeBenchSpawnCount = 1;
+        }
+        else
+        {
+
+        }
 
     }
-
     // Update is called once per frame
     void Update()
     {
         //timer -= Time.deltaTime * 25;
         if (robotSpawnCount >= 0)
         {
-            Instantiate(robot);
+            Instantiate(robot, spawnPoint.position, Quaternion.identity);
+            alterSpawn();
             robotSpawnCount -= 1;
         }
         if (cyborgSpawnCount >= 0)
         {
-            Instantiate(cyborg);
+            Instantiate(cyborg, spawnPoint.position, Quaternion.identity);
+            alterSpawn();
             cyborgSpawnCount -= 1;
         }
         if (batterySpawnCount >= 0)
         {
-            Instantiate(battery);
+            Instantiate(battery, spawnPoint.position, Quaternion.identity);
+            alterSpawn();
             batterySpawnCount -= 1;
         }
         if (LabBenchSpawnCount >= 0)
         {
-            Instantiate(LabBench);
+            Instantiate(LabBench, spawnPoint.position, Quaternion.identity);
+            alterSpawn();
             LabBenchSpawnCount -= 1;
         }
         if (OfficeBenchSpawnCount >= 0)
         {
-            Instantiate(OfficeBench);
+            Instantiate(OfficeBench, spawnPoint.position, Quaternion.identity);
+            alterSpawn();
             OfficeBenchSpawnCount -= 1;
         }
         if (SteelSpawnCount >= 0)
         {
-            Instantiate(Steel);
+            Instantiate(Steel, spawnPoint.position, Quaternion.identity);
+            alterSpawn();
             SteelSpawnCount -= 1;
         }
         if (woodSpawnCount >= 0)
         {
-            Instantiate(wood);
+            Instantiate(wood, spawnPoint.position, Quaternion.identity);
+            alterSpawn();
             woodSpawnCount -= 1;
         }
         if (WorkBenchSpawnCount >= 0)
         {
-            Instantiate(WorkBench);
+            Instantiate(WorkBench, spawnPoint.position, Quaternion.identity);
+            alterSpawn();
             WorkBenchSpawnCount -= 1;
         }
     }
