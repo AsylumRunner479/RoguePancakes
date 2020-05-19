@@ -24,11 +24,15 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        anotherLevel();
     }
     public void alterSpawn()
     {
         spawnPoint.position = this.transform.position + new Vector3(Random.Range(0, 17), Random.Range(0, 17), 0);
+    }
+    public void anotherLevel()
+    {
+        
     }
     // Update is called once per frame
     void Update()
