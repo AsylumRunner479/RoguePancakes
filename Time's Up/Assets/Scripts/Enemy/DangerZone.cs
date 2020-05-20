@@ -12,12 +12,12 @@ public class DangerZone : MonoBehaviour
     {
         
     }
-    public void OnColliderEnter(Collider collision)
+
+    void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Collides");
-        if (collision.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
-            player = collision.GetComponent<PlayerController>();
+            player = col.gameObject.GetComponent<PlayerController>();
             player.TakeDamage(damage);
             Destroy(self);
         }
