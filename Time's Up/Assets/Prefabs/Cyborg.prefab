@@ -183,7 +183,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DetectionRange: 10
+  Bullet: {fileID: 6704742946643026415, guid: 329b327181ce9f042b0a7ea5fcd43a55, type: 3}
+  BulletRange: 10
+  BulletSpeed: 6
+  FireRate: 2
   MoveComponent: {fileID: 0}
+  ReloadTime: 0
 --- !u!114 &1737128934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dc51fc749cfca4da446a786bda5f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
+  Speed: 2
   Direction: {x: 0, y: 0, z: 0}
 --- !u!114 &1737128935
 MonoBehaviour:

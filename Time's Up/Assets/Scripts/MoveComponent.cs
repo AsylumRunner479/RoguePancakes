@@ -26,4 +26,5 @@ public class MoveComponent : MonoBehaviour
     }
 
     public void SetDirection(Vector3 _direction) { Direction = _direction; }
+    public void SetSpeed(float _speed) { Speed = _speed; }
 }
