@@ -23,26 +23,24 @@ public class Shooting : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        EnemyAI enemy = other.transform.GetComponent<EnemyAI>();
+        //EnemyAI enemy = other.transform.GetComponent<EnemyAI>();
         Material skin = other.transform.GetComponent<Material>();
-        if (enemy != null)
-        {
-            enemy.TakeDamage(damage);
-            skin.SetFloat("Damaged", enemy.curHealth);
-        }
+        
+            //enemy.TakeDamage(damage);
+            //skin.SetFloat("Damaged", enemy.curHealth);
+        
     }
     void Shoot()
     {
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
-            EnemyAI enemy = hit.transform.GetComponent<EnemyAI>();
+            //EnemyAI enemy = hit.transform.GetComponent<EnemyAI>();
             Material skin = hit.transform.GetComponent<Material>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-                skin.SetFloat("Damaged", enemy.curHealth);
-            }
+            
+                //enemy.TakeDamage(damage);
+                //skin.SetFloat("Damaged", enemy.curHealth);
+            
         }
     }
 }
