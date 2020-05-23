@@ -20,6 +20,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject wood;
     public int WorkBenchSpawnCount;
     public GameObject WorkBench;
+    public int officeDrawSpawnCount;
+    public GameObject OfficeDraw;
     public Transform spawnPoint;
     public int bench;
     public GameObject[] spawnedobjects;
@@ -41,6 +43,7 @@ public class SpawnManager : MonoBehaviour
         robotSpawnCount = Random.Range(0, 10);
         woodSpawnCount = Random.Range(0, 10);
         SteelSpawnCount = Random.Range(0, 10);
+        officeDrawSpawnCount = Random.Range(0, 10);
         bench = Random.Range(0, 3);
         if (bench == 0)
         {
@@ -93,6 +96,12 @@ public class SpawnManager : MonoBehaviour
             Instantiate(OfficeBench, spawnPoint.position, Quaternion.identity);
             alterSpawn();
             OfficeBenchSpawnCount -= 1;
+        }
+        if (officeDrawSpawnCount > 0)
+        {
+            Instantiate(OfficeDraw, spawnPoint.position, Quaternion.identity);
+            alterSpawn();
+            officeDrawSpawnCount -= 1;
         }
         if (SteelSpawnCount > 0)
         {
