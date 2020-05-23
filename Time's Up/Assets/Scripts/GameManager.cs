@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static bool isDead;
+    public GameObject Death;
+    public GameObject deathImage;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +18,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameEnded == true)
+        {
+            Death.SetActive(true);
+            deathImage.SetActive(true);
+        }
+        else
+        {
+            Death.SetActive(false);
+            deathImage.SetActive(false);
+        }
+       
     }
     public void Dying()
     {
         isDead = true;
+        gameEnded = true;
     }
     public void Revive()
     {
@@ -59,7 +72,9 @@ public class GameManager : MonoBehaviour
     //create a function to restart a scene by loading the activeScene
     public void Restart()
     {
+        gameEnded = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
     //
     //create a function to move to next scene by loading the activeScene +1
