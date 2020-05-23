@@ -52,7 +52,7 @@ Material:
     - _Cutoff: 0.5
     - _Damaged: 1
     - _EnableExternalAlpha: 0
-    - __dirty: 0
+    - __dirty: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Edge: {r: 1, g: 0.0235849, b: 0.0235849, a: 0}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    public SpawnManager spawn;
     public float time;
     public GameManager gamemanager;
     // Start is called before the first frame update
@@ -21,11 +22,15 @@ public class TimeManager : MonoBehaviour
         }
         else if (ElevatorManager.PlayerSafe == false)
         {
+            
             GameManager.isDead = true;
         }
         else
         {
-            gamemanager.NextLevel();
+            SpawnManager.endlevel = true;
+            
+            spawn.anotherLevel();
+
         }
     }
 }

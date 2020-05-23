@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4449711638444326835}
   - component: {fileID: 3583541319448918585}
   - component: {fileID: -5591492726292823046}
+  - component: {fileID: 1013862524790444564}
   m_Layer: 0
   m_Name: Robot updown_0
   m_TagString: Untagged
@@ -144,4 +145,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   damage: 1
+  self: {fileID: 4449711638444326834}
+--- !u!114 &1013862524790444564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449711638444326834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0f9a660165fe94dbcdb3bcf33862c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   self: {fileID: 4449711638444326834}

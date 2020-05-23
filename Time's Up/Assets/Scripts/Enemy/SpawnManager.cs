@@ -22,6 +22,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject WorkBench;
     public Transform spawnPoint;
     public int bench;
+    public GameObject[] spawnedobjects;
+    public static bool endlevel = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class SpawnManager : MonoBehaviour
     }
     public void anotherLevel()
     {
+        endlevel = false;
         batterySpawnCount = 4;
         cyborgSpawnCount = Random.Range(0, 5);
         robotSpawnCount = Random.Range(0, 10);
