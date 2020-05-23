@@ -60,5 +60,9 @@ public class PlayerController : MonoBehaviour
             if (InventoryDisplay.Instance.AddItem(collision.gameObject, 1) <= 0)
                 collision.gameObject.SetActive(false);
         }
+        if (collision.tag == "crafting")
+        {
+
+        }
     }
 }
