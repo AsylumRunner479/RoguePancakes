@@ -525,6 +525,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1664270837137446851, guid: 65dec77e23dbf3e43bd5d5c74044ebb3,
+        type: 3}
+      propertyPath: m_CameraType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2682998493819202068, guid: 65dec77e23dbf3e43bd5d5c74044ebb3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -709,6 +714,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &713443333 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 162018295612490819, guid: 65dec77e23dbf3e43bd5d5c74044ebb3,
+    type: 3}
+  m_PrefabInstance: {fileID: 543308315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &713443334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713443333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 1
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &817485322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -729,7 +771,7 @@ PrefabInstance:
     - target: {fileID: 721090261324435417, guid: b9bee8cd0f2f19a49936e87b9e9cb4c1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 721090261324435417, guid: b9bee8cd0f2f19a49936e87b9e9cb4c1,
         type: 3}
@@ -775,6 +817,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174859244529952785, guid: b9bee8cd0f2f19a49936e87b9e9cb4c1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9bee8cd0f2f19a49936e87b9e9cb4c1, type: 3}

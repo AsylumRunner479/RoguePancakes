@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8460608139520660443}
   - component: {fileID: 7631484593876403591}
   m_Layer: 0
-  m_Name: Life Bar_0 (4)
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8567408131623226924}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7631484593876403591
 SpriteRenderer:
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2745181169812506093}
   - component: {fileID: 7908623475181646016}
   m_Layer: 0
-  m_Name: Life Bar_0 (1)
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8567408131623226924}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7908623475181646016
 SpriteRenderer:
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 1770170412057015476}
   - component: {fileID: 5787354502051955913}
   m_Layer: 0
-  m_Name: Life Bar_0 (5)
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -193,7 +193,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8567408131623226924}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5787354502051955913
 SpriteRenderer:
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 8944914047527338325}
   - component: {fileID: 5564716182253922830}
   m_Layer: 0
-  m_Name: Life Bar_0
+  m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8567408131623226924}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5564716182253922830
 SpriteRenderer:
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 3999541334318009831}
   - component: {fileID: 8806933812969965558}
   m_Layer: 0
-  m_Name: Life Bar_0 (2)
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,7 +357,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8567408131623226924}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8806933812969965558
 SpriteRenderer:
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 7063181460252102744}
   - component: {fileID: 2571521790320934490}
   m_Layer: 0
-  m_Name: Life Bar_0 (6)
+  m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 6405202601997609225}
   - component: {fileID: 8366160797165870935}
   m_Layer: 0
-  m_Name: Life Bar_0 (3)
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -521,7 +521,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8567408131623226924}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8366160797165870935
 SpriteRenderer:
@@ -602,12 +602,12 @@ Transform:
   m_LocalPosition: {x: -7, y: -4.1277204, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8944914047527338325}
   - {fileID: 2745181169812506093}
   - {fileID: 3999541334318009831}
   - {fileID: 6405202601997609225}
   - {fileID: 8460608139520660443}
   - {fileID: 1770170412057015476}
+  - {fileID: 8944914047527338325}
   - {fileID: 7063181460252102744}
   m_Father: {fileID: 0}
   m_RootOrder: 0

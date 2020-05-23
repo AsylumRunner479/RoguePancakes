@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.tag == "crafting")
         {
-
+            
         }
     }
 }
